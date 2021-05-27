@@ -30,7 +30,7 @@ def bezier(points, n):
         for i in range(0, len(points)):
             num_points += 1
             if num_points % 4 == 0:
-                mid_coord_x = (points[i - 1][0] + points[i][0])/2
+                mid_coord_x = (points[i - 1][0] + points[i][0]) / 2
                 mid_coord_y = (points[i - 1][1] + points[i][1]) / 2
                 temp = points[i]
                 points[i] = list([mid_coord_x, mid_coord_y])
@@ -102,7 +102,6 @@ def main():
                     print('Старые координаты точки', num_point, ': ', points[num_point-1])
                     point = list(map(int, input(f'Новые координаты точки {num_point}: ').split(',')))
                     points[num_point-1] = point
-                result_points = bezier(points.copy(), n)
 
         elif command == 1:
             n = int(input('Введите количество точек: '))
@@ -115,14 +114,12 @@ def main():
                     point = list(map(int, input(f'Координаты {i+1} точки: ').split(',')))
                     points.append(point)
                 num_points = len(points)
-                result_points = bezier(points.copy(), n)
 
             elif command_1 == 2:
                 for i in range(0, n):
                     point = list([random.randint(0, 20), random.randint(0, 10)])
                     points.append(point)
                 num_points = len(points)
-                result_points = bezier(points.copy(), n)
             elif command_1 == 3:
                 quit()
 
@@ -130,6 +127,7 @@ def main():
             if len(points) == 0:
                 print('Вы еще не ввели ни одной точки\n')
             else:
+                result_points = bezier(points.copy(), n)
                 plt.plot(*zip(*points))[0]
                 plt.plot(*zip(*result_points))[0]
                 ax.legend(['Заданая ломаная', 'Составная кривая Безье'])
